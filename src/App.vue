@@ -1,9 +1,28 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <div class="navbar-start">
+        <router-link class="navbar-item" to="/cats"> Art </router-link>
+        <router-link class="navbar-item" to="/dogs"> Store </router-link>
+        <router-link class="navbar-item" to="#"> Search </router-link>
+        <router-link class="navbar-item" to="#"> About </router-link>
+      </div>
+    </div>
+    <div class="navbar-brand">
+      <router-link class="navbar-item" to="/">
+        <img src="./assets/logo.png" alt="ArtShop" style="width: 50px" />
+      </router-link>
+    </div>
+    <div class="navbar-right">
+      <div class="navbar-end">
+        <router-link class="navbar-item" to="#"> Cart </router-link>
+        <router-link class="navbar-item" to="#"> Money </router-link>
+        <router-link class="navbar-item" to="#"> Login </router-link>
+        <router-link class="navbar-item" to="#"> Register </router-link>
+      </div>
+    </div>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss">
@@ -15,16 +34,34 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 10px 20px;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.navbar-item {
+  color: white;
+  margin: 1rem;
+  text-decoration: none;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.navbar-item:hover {
+  text-decoration: underline;
+}
+
+.navbar-left,
+.navbar-right {
+  display: flex;
+}
+
+.navbar-brand {
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
 }
 </style>
