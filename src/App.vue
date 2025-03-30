@@ -5,7 +5,9 @@
         <router-link class="navbar-item" to="/cats"> Art </router-link>
         <router-link class="navbar-item" to="/dogs"> Store </router-link>
         <router-link class="navbar-item" to="#"> Search </router-link>
-        <router-link class="navbar-item" to="#"> About </router-link>
+        <p v-if="admin" class="adminoption">
+          <router-link class="navbar-item" to="/Practice"> Practice </router-link>
+        </p>
       </div>
     </div>
     <div class="navbar-brand">
@@ -15,15 +17,52 @@
     </div>
     <div class="navbar-right">
       <div class="navbar-end">
-        <router-link class="navbar-item" to="#"> Cart </router-link>
-        <router-link class="navbar-item" to="#"> Money </router-link>
-        <router-link class="navbar-item" to="#"> Login </router-link>
-        <router-link class="navbar-item" to="#"> Register </router-link>
+        <div class="end-munu">
+          <router-link class="navbar-item" to="#"> Cart </router-link>
+          <router-link class="navbar-item" to="#"> Money </router-link>
+        </div>
+        <div class="iconuser">
+          <div v-if="user" >
+            <h4 class="nameuser">{{ user.username }}</h4>
+            <button v-on:click="logout" >Logout</button>
+          </div>
+          <div v-else >
+            <router-link class="navbar-item" to="/login"> Login </router-link>
+            <router-link class="navbar-item" to="/register"> Register </router-link>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
   <router-view />
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      user: null,
+      admin: false
+    }
+  },
+  mounted () {
+    const storedUser = sessionStorage.getItem('user')
+    if (storedUser) {
+      this.user = JSON.parse(storedUser)
+
+      if (this.user.status === 'admin') {
+        this.admin = true
+      }
+    }
+  },
+  methods: {
+    logout () {
+      sessionStorage.removeItem('user')
+      this.user = null
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -63,5 +102,27 @@
   flex-grow: 1;
   display: flex;
   justify-content: center;
+}
+
+.navbar-end,.navbar-start {
+  display: flex;
+  margin: 10px;
+}
+
+.iconuser {
+  margin-top: 17px;
+}
+
+.adminoption{
+  margin-top: 16px;
+}
+
+.nameuser{
+  color: bisque;
+}
+
+.end-munu{
+  margin-top: 17px;
+  margin-right: 20px;
 }
 </style>
