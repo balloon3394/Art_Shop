@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav v-if="!isAuthPage" class="navbar">
     <div class="navbar-left">
       <div class="navbar-start">
         <router-link class="navbar-item" to="/cats"> Art </router-link>
@@ -59,6 +59,11 @@ export default {
     logout () {
       sessionStorage.removeItem('user')
       this.user = null
+    }
+  },
+  computed: {
+    isAuthPage () {
+      return this.$route.path === '/login' || this.$route.path === '/register'
     }
   }
 }

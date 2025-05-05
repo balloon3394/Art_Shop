@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getUsers: 'getUsers' 
+      getUsers: 'getUsers'
     })
   },
   methods: {
@@ -64,12 +64,12 @@ export default {
       }
       this.registerUser(newuser)
 
-      this.status = 'success'       
+      this.status = 'success'
       this.message = 'Register complete'
       this.username = ''
       this.password = ''
       this.confirmpassword = ''
-    } 
-  }          
+    }
+  }
 }
 </script>
